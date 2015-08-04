@@ -478,9 +478,8 @@ function create_nova_conf_neutron {
     if [[ "$Q_USE_SECGROUP" == "True" ]]; then
         LIBVIRT_FIREWALL_DRIVER=nova.virt.firewall.NoopFirewallDriver
         iniset $NOVA_CONF DEFAULT firewall_driver $LIBVIRT_FIREWALL_DRIVER
+        iniset $NOVA_CONF DEFAULT security_group_api neutron
     fi
-
-    iniset $NOVA_CONF DEFAULT security_group_api neutron
 
     # set NOVA_VIF_DRIVER and optionally set options in nova_conf
     neutron_plugin_create_nova_conf
